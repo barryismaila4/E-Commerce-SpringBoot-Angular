@@ -1,0 +1,1 @@
+"I have not created a login yet, but I am using something else because I don't yet have a good understanding of how to implement registration. So, I have a plan for login: In DeepPublic, there is a section where I post a key, and it appears in the footer. This is the code to access the admin panel: 'IsmailaBarryDeepDiallo'."
