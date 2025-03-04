@@ -1,0 +1,19 @@
+<div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
+  </div>
+  
+  <div *ngIf="!errorMessage">
+    <h2>Liste des Messages</h2>
+    <ul>
+      <li *ngFor="let contact of contacts">
+        <p><strong>Nom:</strong> {{ contact.nom }}</p>
+        <p><strong>Email:</strong> {{ contact.email }}</p>
+        <p><strong>Numéro:</strong> {{ contact.numero }}</p>
+        <p><strong>Message:</strong> {{ contact.message }}</p>
+  
+        <!-- Bouton pour supprimer le contact -->
+        <button *ngIf="contact.id !== undefined" (click)="deleteContact(contact.id)">Supprimer</button>
+      </li>
+    </ul>
+  </div>
+  
