@@ -1,0 +1,44 @@
+<div>
+    <label for="totalproduit">Nombre de produits : </label>
+    <input type="number" [(ngModel)]="totalproduit" min="1" (ngModelChange)="ajouterProduit()" />
+</div>
+
+<form *ngIf="totalproduit > 0">
+    <div *ngFor="let produit of produits; let i = index">
+      <div>
+        <label for="produit">Produit {{i + 1}} :</label>
+        <input [(ngModel)]="produit.produit" name="produit{{i}}" placeholder="Nom du produit" />
+      </div>
+      <div>
+        <label for="prix">Prix : </label>
+        <input [(ngModel)]="produit.prix" name="prix{{i}}" type="number" placeholder="Prix du produit" />
+      </div>
+      <div>
+        <label for="description">Description : </label>
+        <input [(ngModel)]="produit.description" name="description{{i}}" placeholder="Description" />
+      </div>
+      <div>
+        <label for="totalprix">Total Prix : </label>
+        <input [(ngModel)]="produit.totalprix" name="totalprix{{i}}" type="number" placeholder="Total prix" />
+      </div>
+    </div>
+    
+    <button (click)="creerFacture()">Créer la facture</button>
+</form>
+
+<!-- Section de la facture qui sera capturée -->
+<div *ngIf="facture" #factureTicket class="facture-ticket">
+    <h3>Facture créée :</h3>
+    <p>Total Produits: {{facture.totalproduit}}</p>
+    <p>Total Prix: {{facture.totalprix}}</p>
+    
+    <div *ngFor="let produit of produits">
+      <p><strong>Produit:</strong> {{produit.produit}}</p>
+      <p><strong>Description:</strong> {{produit.description}}</p>
+      <p><strong>Prix:</strong> {{produit.prix}}fcfa</p>
+      <p><strong>Total:</strong> {{produit.totalprix}}€</p>
+    </div>
+
+    <!-- Bouton pour télécharger la facture en image -->
+    <button (click)="telechargerFacture()">Télécharger la facture</button>
+</div>

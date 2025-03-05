@@ -1,0 +1,52 @@
+<div class="admin-container">
+  <header class="admin-header">
+    <h1>DeepAdmin Panel</h1>
+    <!-- Bouton Logout avec un emoji -->
+    <button class="logout-btn" (click)="logout()">
+      🚪 Déconnexion
+    </button>
+    
+    <!-- Message de notification -->
+    <div class="notification">
+      Pour afficher les images des produits<br>
+      ajoutés, redémarrez la page.<br>
+      Merci de votre compréhension.
+    </div>
+    
+
+    <!-- Nouveau bouton pour recharger la page -->
+    <button class="reload-btn" (click)="reloadPage()">🔄</button> <!-- Bouton avec l'emoji de rechargement -->
+  </header>
+
+  <nav class="admin-navbar">
+    <ul>
+      <li><a routerLink="/deepadminserial/deepcategories">Catégories</a></li>
+      <li><a routerLink="/deepadminserial/deepproduits">Produits</a></li>
+      <li><a routerLink="/deepadminserial/deeputilisateurs">CEO-PDG</a></li>
+      <li><a routerLink="/deepadminserial/deepcommandes">Commandes</a></li>
+      <li><a routerLink="/deepadminserial/listmessage">Messages</a></li>
+      <li><a routerLink="/deepadminserial/facture">Factures</a></li> <!-- Nouveau lien pour la facture -->
+    </ul>
+  </nav>
+
+  <div class="admin-main">
+    <aside class="admin-sidebar">
+      <ul>
+        <li><a routerLink="/deepadminserial/deepcategories">Catégories</a></li>
+        <li><a routerLink="/deepadminserial/deepproduits">Produits</a></li>
+        <li><a routerLink="/deepadminserial/deeputilisateurs">CEO-PDG</a></li>
+        <li><a routerLink="/deepadminserial/deepcommandes">Commandes</a></li>
+        <li><a routerLink="/deepadminserial/listmessage">Messages</a></li>
+        <li><a routerLink="/deepadminserial/facture">Factures</a></li> <!-- Nouveau lien pour la facture dans la sidebar -->
+      </ul>
+    </aside>
+
+    <main class="admin-content">
+      <router-outlet></router-outlet> <!-- Affichage des composants enfants ici -->
+    </main>
+  </div>
+
+  <footer class="admin-footer">
+    <p>&copy; 2025 DeepAdmin - Tous droits réservés</p>
+  </footer>
+</div>

@@ -1,0 +1,32 @@
+<!-- Header -->
+<header>
+    <h1>DeepElectroCoding</h1>
+</header>
+
+<!-- Main Content Area -->
+<div class="main-content">
+    <div class="registration-container">
+        <h2>Inscription</h2>
+        <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <label for="nom">Nom</label>
+            <input id="nom" formControlName="nom" type="text" placeholder="Nom" required>
+            
+            <label for="prenom">Prénom</label>
+            <input id="prenom" formControlName="prenom" type="text" placeholder="Prénom" required>
+            
+            <label for="email">Email</label>
+            <input id="email" formControlName="email" type="email" placeholder="Email" required>
+            
+            <label for="password">Mot de passe</label>
+            <input id="password" formControlName="password" type="password" placeholder="Mot de passe" required>
+            
+            <button type="submit" [disabled]="!userForm.valid">S'inscrire</button>
+        </form>
+        <button (click)="onReturn()">Retour</button>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>&copy; 2023 DeepElectroCoding. Tous droits réservés.</p>
+</footer>

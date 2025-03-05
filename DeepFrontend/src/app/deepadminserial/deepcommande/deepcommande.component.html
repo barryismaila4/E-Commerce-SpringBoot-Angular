@@ -1,0 +1,48 @@
+<div class="commande-list">
+    <h2>Liste des Commandes</h2>
+  
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+  
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+  
+    <table *ngIf="commandes.length > 0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Email</th>
+          <th>Numéro</th>
+          <th>Ville</th>
+          <th>Adresse</th>
+          <th>Code Postal</th>
+          <th>Panier</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let commande of commandes">
+          <td>{{ commande.id }}</td>
+          <td>{{ commande.nom }}</td>
+          <td>{{ commande.prenom }}</td>
+          <td>{{ commande.email }}</td>
+          <td>{{ commande.numero }}</td>
+          <td>{{ commande.ville }}</td>
+          <td>{{ commande.adresse }}</td>
+          <td>{{ commande.codePostal }}</td>
+          <td>{{ commande.panier }}</td>
+          <td>
+            <button (click)="deleteCommande(commande.id!)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <p *ngIf="commandes.length === 0 && !errorMessage">Aucune commande trouvée.</p>
+  </div>
+  
+  

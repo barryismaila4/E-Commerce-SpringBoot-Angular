@@ -1,0 +1,127 @@
+/* Style global */
+body {
+    background-color: #121212; /* Couleur de fond sombre */
+    color: #ffffff; /* Couleur du texte */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    background-color: #1e1e1e; /* Couleur d'en-tête plus sombre */
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+nav {
+    background-color: #222;
+    width: 220px; /* Largeur de la barre de navigation */
+    position: absolute;
+    height: calc(100% - 60px); /* Prendre en compte la taille de l'en-tête */
+    overflow-y: auto;
+    padding-top: 20px;
+}
+
+nav a {
+    color: #ffffff; /* Couleur des liens */
+    text-decoration: none;
+    padding: 10px 15px; /* Espacement autour des liens */
+    display: block;
+    transition: background 0.3s; /* Transition pour l'effet hover */
+}
+
+nav a:hover {
+    background: #444; /* Couleur de fond au survol */
+}
+
+.main-content {
+    margin-left: 240px; /* Espace pour la barre de navigation */
+    padding: 20px;
+    flex: 1; /* Prendre le reste de l'espace */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer {
+    background-color: #1e1e1e; /* Couleur de pied de page plus sombre */
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Conteneur de connexion */
+.login-container {
+    background-color: rgba(255, 255, 255, 0.1); /* Fond semi-transparent */
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    width: 350px; /* Largeur du conteneur de connexion */
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px; /* Taille de police du titre */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold; /* Mettre le label en gras */
+}
+
+input[type="email"],
+input[type="password"] {
+    padding: 12px; /* Espacement interne */
+    border: 1px solid #555; /* Bordure plus sombre */
+    border-radius: 4px;
+    margin-bottom: 15px; /* Espacement entre les champs */
+    background: #333; /* Fond des champs */
+    color: #fff; /* Couleur du texte */
+    transition: border 0.3s; /* Transition pour l'effet focus */
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff; /* Couleur de bordure au focus */
+}
+
+button {
+    padding: 12px;
+    background-color: #007bff; /* Couleur de fond des boutons */
+    color: #fff; /* Couleur du texte */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s; /* Transition pour l'effet hover */
+}
+
+button:hover {
+    background-color: #0056b3; /* Couleur de fond au survol */
+}
+
+.w3-button {
+    background-color: #28a745; /* Couleur de fond pour les boutons supplémentaires */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s; /* Transition pour l'effet hover */
+}
+
+.w3-button:hover {
+    background-color: #218838; /* Couleur de fond au survol */
+}

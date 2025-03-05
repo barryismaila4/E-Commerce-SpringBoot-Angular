@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepElectroCoding - Connexion</title>
+    <style>
+        /* Style global */
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #222;
+            width: 200px;
+            position: absolute;
+            height: calc(100% - 60px); /* Prendre en compte la taille de l'en-tête */
+            overflow-y: auto;
+            padding-top: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            display: block;
+        }
+
+        nav a:hover {
+            background: #555;
+        }
+
+        .main-content {
+            margin-left: 220px; /* Espace pour la barre de navigation */
+            padding: 20px;
+            flex: 1; /* Prendre le reste de l'espace */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer {
+            background-color: #333;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Conteneur de connexion */
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            width: 300px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background: #222;
+            color: #fff;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #555;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #777;
+        }
+
+        .w3-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .w3-button:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>DeepElectroCoding</h1>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <div class="login-container">
+            <h2>Connexion</h2>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <label for="email">Email</label>
+                <input id="email" formControlName="email" type="email" placeholder="Email">
+                
+                <!-- Message d'erreur pour l'email -->
+                <div *ngIf="loginForm.get('email')?.hasError('invalidEmail')" class="error-message">
+                    L'email doit contenir le symbole @.
+                </div>
+                
+                <label for="password">Mot de passe</label>
+                <input id="password" formControlName="password" type="password" placeholder="Mot de passe">
+                
+                <button type="submit" [disabled]="!loginForm.valid">Se connecter</button>
+            </form>
+            <button (click)="redirectToRegister()" class="w3-button">Créer un compte</button>
+            <button (click)="goBack()" class="w3-button">Retour</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2023 DeepElectroCoding. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+<div class="wrapper">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">DeepElectroCoding</div>
+      <nav class="navbar">
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li>
+            <button (click)="toggleAbout()" class="about-btn">À Propos</button>
+          </li>
+          <li>
+            <button (click)="toggleCodeForm()" class="code-btn">🔑</button>
+          </li>
+          <li>
+            <button (click)="toggleCart()" class="cart-btn">
+              🛒 {{ getCartItemCount() }} 🛍️
+            </button>
+          </li>
+          <li>
+            <button (click)="login()" class="login-btn">🔑 Login</button>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  
+    <section class="about" *ngIf="isAboutVisible">
+      <h2>À Propos de Nous</h2>
+      <p>
+        Bienvenue chez DeepElectroCoding, votre service de vente de produits électroniques. 
+        Nous sommes spécialisés dans la création de sites web 100% sécurisés, adaptés à vos besoins. 
+        Notre équipe est dédiée à fournir des solutions innovantes et fiables pour vous aider à réussir en ligne.
+      </p>
+      <p>
+        Cliquez sur le bouton ci-dessous pour nous contacter et discuter de vos projets !
+      </p>
+      <button (click)="showContactForm()" class="contact-btn">Contactez-nous</button>
+      <!-- Bouton pour fermer la section "À Propos" -->
+      <button (click)="toggleAbout()" class="close-about-btn">Fermer</button>
+    </section>
+  
+    <!-- Sidebar (Catégories) -->
+    <div class="sidebar">
+      <h3>Categories</h3>
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Search categories..."
+        (input)="searchCategory()"
+      />
+      <div class="categories">
+        <div
+          *ngFor="let category of categories"
+          (click)="category.id && showProduitsByCategory(category.id)"
+        >
+          <div class="category-card">
+            <h4>{{ category.name }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Main Content (Produits) -->
+    <div class="main-content" *ngIf="isProductVisible">
+      <h2>Products</h2>
+  
+      <!-- Champ de recherche pour les produits -->
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Search products..."
+        (input)="searchProduitsByName(searchTerm)"
+      />
+  
+      <!-- Affichage des détails du produit sélectionné -->
+      <div *ngIf="selectedProduit" class="produit-details">
+        <h3>{{ selectedProduit.name }}</h3>
+        <p><strong>Description:</strong> {{ selectedProduit.description }}</p>
+        <p><strong>Code:</strong> {{ selectedProduit.code }}</p>
+        <p><strong>Price:</strong> {{ selectedProduit.prix }}fcfa</p>
+  
+        <!-- Affichage de l'image en détail -->
+        <img *ngIf="selectedProduit.image" [src]="'data:image/jpeg;base64,' + selectedProduit.image" alt="Product Image" />
+        <button (click)="hideProduitDetails()">Retour</button>
+        <button (click)="addToCart(selectedProduit)">Ajouter au Panier</button>
+      </div>
+  
+      <div class="produits">
+        <div *ngFor="let produit of produits" class="produit-card">
+          <button (click)="showProduitDetails(produit)">🔍</button>
+  
+          <h3>{{ produit.name }}</h3>
+          <p><strong>Price:</strong> {{ produit.prix }}fcfa</p>
+  
+          <!-- Affichage de l'image du produit -->
+          <img *ngIf="produit.image" [src]="'data:image/jpeg;base64,' + produit.image" alt="Product Image" />
+          <button (click)="addToCart(produit)">🛒</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Affichage du Panier -->
+    <div *ngIf="isCartVisible" class="panier">
+      <h3>Mon Panier</h3>
+      <ul>
+        <li *ngFor="let item of getCartItems()">
+          {{ item.name }} ({{ item.code }}) - {{ item.price }}fcfa x {{ item.quantity }}
+        </li>
+      </ul>
+      <p><strong>Total:</strong> {{ calculateTotal() }}fcfa</p>
+      <button (click)="toggleCart()">Fermer le Panier</button>
+      <button (click)="showOrderForm()" class="continuer-btn">Continuer</button>
+  
+      <div *ngIf="isOrderFormVisible" class="order-form">
+        <h3>Passer une Commande</h3>
+        <label for="nom">Nom:</label>
+        <input type="text" [(ngModel)]="nom" id="nom" required>
+  
+        <label for="prenom">Prénom:</label>
+        <input type="text" [(ngModel)]="prenom" id="prenom" required>
+  
+        <label for="email">Email:</label>
+        <input type="email" [(ngModel)]="email" id="email" required>
+  
+        <label for="numero">Numéro de téléphone:</label>
+        <input type="tel" [(ngModel)]="numero" id="numero" required>
+  
+        <label for="ville">Ville:</label>
+        <input type="text" [(ngModel)]="ville" id="ville" required>
+  
+        <label for="adresse">Adresse:</label>
+        <input type="text" [(ngModel)]="adresse" id="adresse" required>
+  
+        <label for="codePostal">Code Postal:</label>
+        <input type="text" [(ngModel)]="codePostal" id="codePostal" required>
+  
+        <button (click)="placeOrder()">Commander</button>
+      </div>
+    </div>
+  
+    <!-- Formulaire de contact -->
+    <div *ngIf="isContactVisible">
+      <app-contact></app-contact>
+      <button (click)="showProducts()">Retour aux produits</button>
+    </div>
+  
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; DeepElectroCoding.</p>
+      <p>Contact us at: <a href="mailto:deepelectrocoding@gmail.com">deepelectrocoding@gmail.com</a></p>
+  
+      <!-- Zone du formulaire de code -->
+      <div *ngIf="isCodeFormVisible" class="code-form">
+        <input
+          type="text"
+          [(ngModel)]="code"
+          placeholder="Entrez votre code"
+          (keyup.enter)="checkCode()"
+        />
+        <button (click)="checkCode()">Vérifier le code</button>
+        <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+      </div>
+  
+      <!-- Button chatbot -->
+      <button class="chatbot-btn" (click)="toggleChatbot()">🤖</button>
+    </footer>
+  </div>
+  
+  <!-- Chatbot (Positionné en fixed, au-dessus du contenu) -->
+  <app-chatbot *ngIf="isChatbotVisible" class="chatbot"></app-chatbot>
+  
